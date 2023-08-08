@@ -1,15 +1,14 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
+"""Route module for the API.
 """
-Route module for the API
-"""
+import os
 from os import getenv
-from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
-import os
 
 from api.v1.views import app_views
 from api.v1.auth.auth import Auth
+from api.v1.auth.basic_auth import BasicAuth
 
 
 app = Flask(__name__)
@@ -25,9 +24,10 @@ if auth_type == 'basic_auth':
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
+    """Not found handler.
     """
     return jsonify({"error": "Not found"}), 404
+
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
@@ -41,6 +41,7 @@ def forbidden(error) -> str:
     """Forbidden handler.
     """
     return jsonify({"error": "Forbidden"}), 403
+
 
 @app.before_request
 def authenticate_user():
@@ -59,7 +60,6 @@ def authenticate_user():
                 abort(401)
             if user is None:
                 abort(403)
-
 
 
 if __name__ == "__main__":
