@@ -10,6 +10,7 @@ from api.v1.views import app_views
 from api.v1.auth.auth import Auth
 from api.v1.auth.basic_auth import BasicAuth
 
+
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
@@ -21,7 +22,6 @@ if auth_type == 'basic_auth':
     auth = BasicAuth()
 if auth_type == 'session_auth':
     auth = SessionAuth()
-
 
 
 @app.errorhandler(404)
@@ -64,8 +64,6 @@ def authenticate_user():
             if user is None:
                 abort(403)
             request.current_user = user
-
-
 
 
 if __name__ == "__main__":
