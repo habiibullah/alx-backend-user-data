@@ -69,5 +69,3 @@ class Auth:
         self._db.update_user(user.id, session_id=session_id)
         return session_id
 
-
-
