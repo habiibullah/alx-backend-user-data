@@ -5,6 +5,7 @@ Main file
 from db import DB
 from user import User
 from auth import _hash_password
+from auth import Auth
 
 print(User.__tablename__)
 
@@ -56,3 +57,21 @@ try:
 except ValueError:
     print("Error")
 print(_hash_password("Hello Holberton"))
+
+email = 'me@me.com'
+password = 'mySecuredPwd'
+
+auth = Auth()
+
+try:
+    user = auth.register_user(email, password)
+    print("successfully created a new user!")
+except ValueError as err:
+    print("could not create a new user: {}".format(err))
+
+try:
+    user = auth.register_user(email, password)
+    print("successfully created a new user!")
+except ValueError as err:
+    print("could not create a new user: {}".format(err))        
+
