@@ -4,6 +4,8 @@ Main file
 """
 from db import DB
 from user import User
+from auth import _hash_password
+
 print(User.__tablename__)
 
 for column in User.__table__.columns:
@@ -53,4 +55,4 @@ try:
     print("Password updated")
 except ValueError:
     print("Error")
-
+print(_hash_password("Hello Holberton"))
